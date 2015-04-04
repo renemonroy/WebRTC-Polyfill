@@ -9,6 +9,7 @@
 
     constructor : polyWebRTC,
     stunServer : null,
+    mediaEl : null,
 
     init : function(config) {
       for ( var prop in config ) {
@@ -38,8 +39,8 @@
         poly.mediaEl.srcObject = mediaStream;
         poly.mediaEl.play();
       };
-      this.rtcPeerConnection = RTCPeerConnection;
-      this.rtcSessionDescription = RTCSessionDescription;
+      this.RTCPeerConnection = RTCPeerConnection;
+      this.RTCSessionDescription = RTCSessionDescription;
       this.getUserMedia = nav.getUserMedia.bind(nav);
       this.isSupported = true;
       return this;
@@ -50,8 +51,8 @@
       this.connectStreamToSrc = function(mediaStream) {
         poly.mediaEl.src = webkitURL.createObjectURL(mediaStream);
       };
-      this.rtcPeerConnection = webkitRTCPeerConnection;
-      this.rtcSessionDescription = RTCSessionDescription;
+      this.RTCPeerConnection = webkitRTCPeerConnection;
+      this.RTCSessionDescription = RTCSessionDescription;
       this.getUserMedia = nav.webkitGetUserMedia.bind(nav);
       this.isSupported = true;
       return this;
@@ -63,8 +64,8 @@
         poly.mediaEl.mozSrcObject = mediaStream;
         poly.mediaEl.play();
       };
-      this.rtcPeerConnection = mozRTCPeerConnection;
-      this.rtcSessionDescription = mozRTCSessionDescription;
+      this.RTCPeerConnection = mozRTCPeerConnection;
+      this.RTCSessionDescription = mozRTCSessionDescription;
       this.getUserMedia = nav.mozGetUserMedia.bind(nav);
       this.isSupported = true;
       return this;
