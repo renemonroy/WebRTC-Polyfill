@@ -1,5 +1,5 @@
 # PolyWebRTC
-A tiny library that uses specific implementations of WebRTC on old browsers.
+Uses specific implementations of WebRTC for old browsers that support it.
 
 Work in progress and not tested yet.
 
