@@ -13,7 +13,7 @@ Just instantiate with the name you want:
   });
 ```
 
-And then access it like `webRTC.RTCPeerConnection()` to execute the method `webkitRTCPeerConnection` if the browsers use webkit implementation.
+And then access it like `new webRTC.RTCPeerConnection()` to instantiate `webkitRTCPeerConnection` if the browsers use webkit implementation.
 
 ### Options Required
 
@@ -22,9 +22,9 @@ And then access it like `webRTC.RTCPeerConnection()` to execute the method `webk
 
 ### API
 
-* **RTCPeerConnection**
-* **RTCSessionDescription**
-* **getUserMedia**
-* **isSupported** 
+* [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection)
+* [RTCSessionDescription](https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription)
+* [getUserMedia](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia)
+* isSupported
 
 Check this [urls list](http://emc.cc.st/public-stun.txt) for **public STUN servers**.
