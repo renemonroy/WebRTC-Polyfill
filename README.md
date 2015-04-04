@@ -1,4 +1,4 @@
-# WebRTC-Polyfill
+# PolyWebRTC
 A tiny library that uses specific implementations of WebRTC on old browsers.
 
 Work in progress and not tested yet.
