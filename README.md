@@ -1,10 +1,10 @@
 # WebRTC-Polyfill
 A tiny library that uses specific implementations of WebRTC on old browsers.
 
-Work in progres...
+Work in progress and not tested yet.
 
 ### Usage
-Just instantiate as this:
+Just instantiate with the name you want:
 
 ```Javascript
   var webRTC = new PolyWebRTC({
