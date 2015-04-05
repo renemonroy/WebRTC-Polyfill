@@ -29,6 +29,7 @@
       } else {
         console.log('WebRTC is not supported.');
         this.webRTCSupported = false;
+        this.webRTCClient = null;
       }
       return this;
     },
