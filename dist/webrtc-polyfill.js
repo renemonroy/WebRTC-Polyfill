@@ -28,7 +28,7 @@
         _configMozilla(nav);
       } else {
         console.log('WebRTC is not supported.');
-        this.isSupported = false;
+        this.webRTCSupported = false;
       }
       return this;
     },
@@ -42,7 +42,8 @@
       this.RTCPeerConnection = RTCPeerConnection;
       this.RTCSessionDescription = RTCSessionDescription;
       this.getUserMedia = nav.getUserMedia.bind(nav);
-      this.isSupported = true;
+      this.webRTCSupported = true;
+      this.webRTCClient = 'standard';
       return this;
     },
 
@@ -54,7 +55,8 @@
       this.RTCPeerConnection = webkitRTCPeerConnection;
       this.RTCSessionDescription = RTCSessionDescription;
       this.getUserMedia = nav.webkitGetUserMedia.bind(nav);
-      this.isSupported = true;
+      this.webRTCSupported = true;
+      this.webRTCClient = 'webkit';
       return this;
     },
 
@@ -67,7 +69,8 @@
       this.RTCPeerConnection = mozRTCPeerConnection;
       this.RTCSessionDescription = mozRTCSessionDescription;
       this.getUserMedia = nav.mozGetUserMedia.bind(nav);
-      this.isSupported = true;
+      this.webRTCSupported = true;
+      this.webRTCClient = 'mozilla';
       return this;
     }
 

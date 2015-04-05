@@ -25,6 +25,6 @@ And then access it like `new webRTC.RTCPeerConnection()` to instantiate `webkitR
 * [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection)
 * [RTCSessionDescription](https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription)
 * [getUserMedia](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia)
-* isSupported
+* webRTCSupported
 
 Check this [urls list](http://emc.cc.st/public-stun.txt) for **public STUN servers**.
