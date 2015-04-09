@@ -103,6 +103,7 @@
       for ( var i=0; i<listenersSize; i++ ) {
         listenersList[i].apply(this, args);
       }
+      return;
     },
 
     connect : function() {
@@ -112,7 +113,7 @@
           iceServers : this.iceServers
         });
         remote.onicecandidate = this._onCandidate.bind(this);
-        remote.onaddstream = this._onAddStream.bind(this);
+        remote.onaddstream = this._onRemoteStream.bind(this);
         this.remote = remote;
       }
       if ( !this.channel ) {
@@ -146,6 +147,11 @@
       return this;
     },
 
+    stream : function(mediaStream) {
+      this.remote.addStream(mediaStream);
+      return this;
+    },
+
     _onCandidate : function(e) {
       if ( e.candidate ) {
         this.channel.send(JSON.stringify({
@@ -155,6 +161,10 @@
       } else {
         this.emmit('error', { type : 'NO_CANDIDATE' });
       }
+    },
+
+    _onRemoteStream : function(e) {
+      this.emmit('media', { origin : 'remote', media : e.stream });
     },
 
     _onChannelOpen : function(e) {
@@ -219,6 +229,12 @@ peer
   })
   .on('signal', function(e) {
     console.log("Client received a signal message.", e);
+    switch ( e.type ) {
+      case 'owner' :
+        break;
+      case 'guest' :
+        break;
+    }
   })
   .on('disconnet', function(e) {
     console.log("Client is not able to send signals now.", e);
@@ -228,14 +244,13 @@ peer
   })
   .on('media', function(e) {
     console.log('Media obtained successfully.', e);
-    switch ( e.type ) {
+    switch ( e.origin ) {
       case 'local' :
-        peer.play(e.localMedia, localVideoEl);
-        peer.stream(e.localMedia);
+        peer.play(e.media, localVideoEl);
+        peer.stream(e.media);
         break;
       case 'remote' :
-        console.log('is remote');
-        peer.play
+        peer.play(e.media, remoteVideoEl);
         break;
     }
   });
