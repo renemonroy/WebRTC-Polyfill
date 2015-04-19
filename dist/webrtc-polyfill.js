@@ -93,7 +93,7 @@
       return this;
     },
 
-    emmit : function(type) {
+    emit : function(type) {
       var args, listenersList, listenerSize;
       if ( !this._events ) this._events = {};
       if ( typeof this._events[type] === 'undefined' ) return false;
@@ -159,38 +159,38 @@
           candidate : e.candidate
         }));
       } else {
-        this.emmit('error', { type : 'NO_CANDIDATE' });
+        this.emit('error', { type : 'NO_CANDIDATE' });
       }
     },
 
     _onRemoteStream : function(e) {
-      this.emmit('media', { origin : 'remote', media : e.stream });
+      this.emit('media', { origin : 'remote', media : e.stream });
     },
 
     _onChannelOpen : function(e) {
       this._channelOpen = true;
-      this.emmit('connect', e);
+      this.emit('connect', e);
     },
 
     _onChannelClose : function(e) {
       this._channelClose = false;
-      this.emmit('disconnect', e);
+      this.emit('disconnect', e);
     },
 
     _onChannelMessage : function(e) {
-      this.emmit('signal', e);
+      this.emit('signal', e);
     },
 
     _onChannelError : function(e) {
-      this.emmit('error', e);
+      this.emit('error', e);
     },
 
     _onLocalMediaSuccess : function(mediaStream) {
-      this.emmit('media', { type : 'local', media : mediaStream });
+      this.emit('media', { type : 'local', media : mediaStream });
     },
 
     _onLocalMediaError : function(e) {
-      this.emmit('error', e);
+      this.emit('error', e);
     }
 
   };
@@ -228,20 +228,27 @@ peer
     console.log("Client can send signals now.", e);
   })
   .on('signal', function(e) {
-    console.log("Client received a signal message.", e);
-    switch ( e.type ) {
-      case 'owner' :
-        break;
-      case 'guest' :
-        break;
-    }
+    console.log("Client received a message.", e);
+    // switch ( e.origin ) {
+    //   case 'owner' :
+    //     break;
+    //   case 'guest' :
+    //     peer.joinRoom('room');
+    //     break;
+    // }
   })
   .on('disconnet', function(e) {
     console.log("Client is not able to send signals now.", e);
   })
+  /* 
+   * Shows different errors from different types of connections or custom.
+   **/
   .on('error', function(e) {
     console.log('Error response.', e);
   })
+  /* 
+   * When received a media, this could be from local client or a remote peer.
+   **/
   .on('media', function(e) {
     console.log('Media obtained successfully.', e);
     switch ( e.origin ) {
@@ -254,6 +261,8 @@ peer
         break;
     }
   });
+
+// peer.connect();
 
 peer.connect();
 
